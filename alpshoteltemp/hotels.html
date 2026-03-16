@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THE ALPS
+HOTEL NAKURU  Hotel & Restaurant</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black:   #070705;
+  --deep:    #0e0d0a;
+  --card:    #131209;
+  --gold:    #c8a45a;
+  --gold2:   #e8c878;
+  --cream:   #f2ead8;
+  --muted:   rgba(242,234,216,0.45);
+  --faint:   rgba(242,234,216,0.12);
+  --border:  rgba(200,164,90,0.18);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Jost',sans-serif;
+  background:var(--black);
+  color:var(--cream);
+  overflow-x:hidden;
+}
+
+/* ── CURSOR ── */
+#cur,#cur2{position:fixed;border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%)}
+#cur{width:7px;height:7px;background:var(--gold);transition:width .15s,height .15s}
+#cur2{width:30px;height:30px;border:1px solid rgba(200,164,90,.5);transition:all .1s ease}
+body:hover #cur{opacity:1}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:800;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:32px 80px;
+  transition:all .4s;
+}
+nav.solid{
+  background:rgba(7,7,5,.96);
+  backdrop-filter:blur(20px);
+  padding:18px 80px;
+  border-bottom:1px solid var(--border);
+}
+.logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:24px;font-weight:500;letter-spacing:4px;
+  text-decoration:none;color:var(--cream);
+}
+.logo span{color:var(--gold);font-style:italic}
+.nav-mid{display:flex;gap:36px;list-style:none}
+.nav-mid a{
+  font-size:11px;letter-spacing:2.5px;text-transform:uppercase;
+  color:var(--muted);text-decoration:none;transition:color .2s;font-weight:400;
+}
+.nav-mid a:hover{color:var(--gold)}
+.nav-right{display:flex;gap:12px;align-items:center}
+.btn-nav{
+  font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:500;
+  padding:11px 28px;cursor:pointer;text-decoration:none;display:inline-block;transition:all .25s;
+}
+.btn-outline-gold{
+  background:transparent;color:var(--gold);
+  border:1px solid var(--gold);
+}
+.btn-outline-gold:hover{background:var(--gold);color:var(--black)}
+.btn-solid-gold{background:var(--gold);color:var(--black);border:1px solid var(--gold)}
+.btn-solid-gold:hover{background:var(--gold2)}
+
+/* ── HERO ── */
+.hero{
+  height:100vh;min-height:680px;
+  position:relative;display:flex;align-items:center;
+  overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse at 65% 40%,#2a1e0a 0%,transparent 55%),
+    radial-gradient(ellipse at 20% 80%,#1a1206 0%,transparent 45%),
+    linear-gradient(160deg,#0e0c06 0%,#1a1508 40%,#080706 100%);
+}
+/* CSS-art starfield */
+.stars{position:absolute;inset:0;overflow:hidden}
+.stars::before,.stars::after{
+  content:'';position:absolute;inset:0;
+  background-image:
+    radial-gradient(1px 1px at 10% 15%,rgba(200,164,90,.6) 0%,transparent 100%),
+    radial-gradient(1px 1px at 25% 35%,rgba(200,164,90,.4) 0%,transparent 100%),
+    radial-gradient(1px 1px at 40% 8%,rgba(200,164,90,.5) 0%,transparent 100%),
+    radial-gradient(1px 1px at 60% 22%,rgba(200,164,90,.3) 0%,transparent 100%),
+    radial-gradient(1px 1px at 75% 5%,rgba(200,164,90,.6) 0%,transparent 100%),
+    radial-gradient(1px 1px at 85% 30%,rgba(200,164,90,.4) 0%,transparent 100%),
+    radial-gradient(1px 1px at 92% 12%,rgba(200,164,90,.5) 0%,transparent 100%),
+    radial-gradient(1px 1px at 55% 45%,rgba(200,164,90,.2) 0%,transparent 100%),
+    radial-gradient(1px 1px at 15% 55%,rgba(200,164,90,.3) 0%,transparent 100%),
+    radial-gradient(1px 1px at 30% 65%,rgba(200,164,90,.2) 0%,transparent 100%);
+}
+.hero-overlay{
+  position:absolute;inset:0;z-index:2;
+  background:
+    linear-gradient(to right,rgba(7,7,5,.88) 40%,rgba(7,7,5,.2) 100%),
+    linear-gradient(to top,rgba(7,7,5,.7) 0%,transparent 50%);
+}
+/* Decorative building silhouette */
+.hero-silhouette{
+  position:absolute;right:0;bottom:0;width:60%;height:100%;z-index:1;
+  background:
+    linear-gradient(to bottom,transparent 0%,rgba(200,164,90,.04) 40%,transparent 100%);
+  clip-path:polygon(
+    15% 100%,15% 30%,18% 30%,18% 20%,22% 20%,22% 15%,
+    28% 15%,28% 20%,32% 20%,32% 10%,36% 10%,36% 20%,
+    40% 20%,40% 30%,44% 30%,44% 0%,46% 0%,46% 30%,
+    50% 30%,50% 20%,56% 20%,56% 35%,60% 35%,60% 25%,
+    66% 25%,66% 40%,72% 40%,72% 30%,78% 30%,78% 45%,
+    85% 45%,85% 55%,90% 55%,90% 65%,95% 65%,95% 100%
+  );
+  background:#1a1508;
+  opacity:.25;
+}
+.hero-content{
+  position:relative;z-index:5;
+  padding:0 80px;max-width:720px;
+}
+.hero-eyebrow{
+  font-size:10px;letter-spacing:5px;text-transform:uppercase;
+  color:var(--gold);margin-bottom:28px;
+  display:flex;align-items:center;gap:16px;
+}
+.hero-eyebrow::before{content:'';width:40px;height:1px;background:var(--gold)}
+.hero-h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(56px,7vw,104px);
+  font-weight:300;line-height:.96;letter-spacing:1px;
+  color:var(--cream);margin-bottom:32px;
+}
+.hero-h1 em{font-style:italic;color:var(--gold);display:block}
+.hero-sub{
+  font-size:15px;line-height:1.8;color:var(--muted);
+  max-width:460px;margin-bottom:52px;font-weight:300;
+}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap}
+.hero-scroll{
+  position:absolute;bottom:40px;left:80px;z-index:5;
+  display:flex;align-items:center;gap:14px;
+  font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);
+}
+.scroll-bar{
+  width:40px;height:1px;
+  background:linear-gradient(to right,var(--gold),transparent);
+  animation:scrollPulse 2s ease-in-out infinite;
+}
+@keyframes scrollPulse{0%,100%{opacity:.4;width:20px}50%{opacity:1;width:40px}}
+
+/* Awards strip */
+.awards{
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  padding:20px 80px;
+  display:flex;align-items:center;gap:60px;
+  background:rgba(200,164,90,.03);
+  overflow:hidden;
+}
+.awards-label{
+  font-size:9px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--muted);white-space:nowrap;flex-shrink:0;
+}
+.awards-list{
+  display:flex;gap:48px;align-items:center;flex-wrap:wrap;
+}
+.award-item{
+  font-family:'Cormorant Garamond',serif;
+  font-size:13px;color:rgba(200,164,90,.55);
+  letter-spacing:1px;white-space:nowrap;
+}
+
+/* ── ABOUT ── */
+.about-sec{
+  padding:130px 80px;
+  display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:center;
+}
+.about-visual{
+  position:relative;
+  display:grid;grid-template-columns:1fr 1fr;gap:12px;
+}
+.about-img{
+  border-radius:2px;overflow:hidden;
+  position:relative;
+}
+.about-img.tall{grid-row:span 2}
+.img-block{
+  width:100%;background:var(--card);
+  display:flex;align-items:center;justify-content:center;
+  font-size:clamp(48px,6vw,72px);
+  position:relative;overflow:hidden;
+}
+.img-block::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(200,164,90,.08),transparent);
+}
+.h240{height:240px}
+.h180{height:180px}
+.about-badge{
+  position:absolute;bottom:-20px;right:-20px;z-index:2;
+  width:100px;height:100px;border-radius:50%;
+  background:var(--gold);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  box-shadow:0 8px 32px rgba(200,164,90,.3);
+}
+.badge-num{font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--black);font-weight:600;line-height:1}
+.badge-txt{font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(0,0,0,.7);text-align:center;margin-top:2px}
+.sec-label{
+  font-size:10px;letter-spacing:4px;text-transform:uppercase;
+  color:var(--gold);margin-bottom:16px;
+  display:flex;align-items:center;gap:14px;
+}
+.sec-label::before{content:'';width:32px;height:1px;background:var(--gold)}
+.sec-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(34px,4vw,56px);font-weight:400;line-height:1.1;
+  color:var(--cream);margin-bottom:24px;
+}
+.sec-title em{font-style:italic;color:var(--gold)}
+.sec-body{
+  font-size:14px;line-height:1.9;color:var(--muted);
+  font-weight:300;margin-bottom:36px;
+}
+.about-features{display:flex;gap:32px;flex-wrap:wrap;margin-top:8px}
+.af-item{display:flex;flex-direction:column;gap:4px}
+.af-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:36px;color:var(--gold);font-weight:400;line-height:1;
+}
+.af-label{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);font-weight:400}
+
+/* ── ROOMS ── */
+.rooms-sec{padding:0 80px 130px}
+.rooms-header{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  margin-bottom:60px;
+}
+.rooms-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:2px;
+  background:var(--border);
+}
+.room-card{
+  background:var(--card);overflow:hidden;
+  cursor:pointer;transition:transform .4s;
+  position:relative;
+}
+.room-card:hover .room-img-inner{transform:scale(1.04)}
+.room-img{height:260px;overflow:hidden;position:relative}
+.room-img-inner{
+  height:100%;transition:transform .5s cubic-bezier(.25,1,.5,1);
+  display:flex;align-items:center;justify-content:center;
+  font-size:72px;
+  background:linear-gradient(160deg,#1a1206,#0e0c06);
+}
+.room-tag{
+  position:absolute;top:16px;left:16px;
+  background:var(--gold);color:var(--black);
+  font-size:9px;letter-spacing:2px;text-transform:uppercase;
+  padding:5px 12px;font-weight:600;z-index:2;
+}
+.room-body{padding:28px 28px 32px}
+.room-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px;font-weight:400;color:var(--cream);
+  margin-bottom:8px;
+}
+.room-desc{font-size:12px;color:var(--muted);line-height:1.7;margin-bottom:20px;font-weight:300}
+.room-footer{
+  display:flex;justify-content:space-between;align-items:center;
+  padding-top:20px;border-top:1px solid var(--faint);
+}
+.room-price{
+  font-family:'Cormorant Garamond',serif;
+  font-size:28px;color:var(--gold);font-weight:400;
+}
+.room-price small{font-size:12px;color:var(--muted);font-family:'Jost',sans-serif;font-weight:300}
+.room-book{
+  font-size:10px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--gold);border:1px solid var(--border);
+  padding:8px 20px;transition:all .25s;background:transparent;cursor:pointer;
+}
+.room-book:hover{background:var(--gold);color:var(--black)}
+.room-amenities{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px}
+.amenity{
+  font-size:10px;color:var(--muted);
+  display:flex;align-items:center;gap:5px;
+}
+
+/* ── DINING ── */
+.dining-sec{
+  background:var(--deep);
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  padding:130px 80px;
+}
+.dining-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.dining-visual{
+  position:relative;
+}
+.dining-main-img{
+  width:100%;height:460px;
+  background:linear-gradient(160deg,#1a1006,#0e0a04);
+  display:flex;align-items:center;justify-content:center;
+  font-size:100px;border-radius:2px;
+  position:relative;overflow:hidden;
+}
+.dining-main-img::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(7,7,5,.6) 0%,transparent 50%);
+}
+.dining-main-img span{position:relative;z-index:1}
+.dining-label-overlay{
+  position:absolute;bottom:24px;left:24px;z-index:2;
+  background:rgba(7,7,5,.85);padding:16px 20px;
+  border-left:2px solid var(--gold);
+}
+.dlo-title{font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--cream);font-weight:400}
+.dlo-sub{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-top:4px}
+.dining-thumb-row{display:flex;gap:12px;margin-top:12px}
+.dining-thumb{
+  flex:1;height:110px;border-radius:2px;
+  background:linear-gradient(135deg,#1a1208,#0e0c06);
+  display:flex;align-items:center;justify-content:center;font-size:36px;
+  border:1px solid var(--faint);
+}
+.menu-preview{margin-top:48px}
+.menu-category{
+  font-size:9px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--gold);margin-bottom:20px;
+  padding-bottom:10px;border-bottom:1px solid var(--border);
+}
+.menu-item{
+  display:flex;justify-content:space-between;align-items:baseline;
+  padding:14px 0;border-bottom:1px solid var(--faint);
+  gap:16px;
+}
+.mi-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:17px;font-weight:400;color:var(--cream);
+}
+.mi-desc{font-size:11px;color:var(--muted);margin-top:3px;font-weight:300}
+.mi-dots{
+  flex:1;height:1px;
+  background:repeating-linear-gradient(to right,rgba(200,164,90,.2) 0,rgba(200,164,90,.2) 3px,transparent 3px,transparent 8px);
+  margin:0 12px;align-self:center;
+}
+.mi-price{
+  font-family:'Cormorant Garamond',serif;
+  font-size:16px;color:var(--gold);white-space:nowrap;font-weight:400;
+}
+.reserve-box{
+  margin-top:36px;background:rgba(200,164,90,.06);
+  border:1px solid var(--border);padding:28px;
+}
+.rb-title{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--cream);margin-bottom:20px;font-weight:400}
+.rb-form{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.rb-input{
+  background:rgba(255,255,255,.04);border:1px solid var(--border);
+  padding:12px 16px;font-size:12px;color:var(--cream);
+  font-family:'Jost',sans-serif;outline:none;
+  transition:border-color .2s;
+}
+.rb-input:focus{border-color:var(--gold)}
+.rb-input::placeholder{color:var(--muted)}
+.rb-select{
+  grid-column:span 2;
+  background:rgba(255,255,255,.04);border:1px solid var(--border);
+  padding:12px 16px;font-size:12px;color:var(--cream);
+  font-family:'Jost',sans-serif;outline:none;
+  -webkit-appearance:none;
+}
+.rb-submit{
+  grid-column:span 2;background:var(--gold);color:var(--black);
+  border:none;padding:14px;font-size:11px;font-weight:600;
+  letter-spacing:2px;text-transform:uppercase;cursor:pointer;
+  transition:background .25s;
+}
+.rb-submit:hover{background:var(--gold2)}
+
+/* ── FACILITIES ── */
+.facilities-sec{padding:130px 80px}
+.fac-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+  background:var(--border);margin-top:60px;
+}
+.fac-card{
+  background:var(--black);padding:48px 32px;
+  transition:background .3s;cursor:default;
+}
+.fac-card:hover{background:var(--card)}
+.fac-icon{font-size:36px;display:block;margin-bottom:20px}
+.fac-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:20px;font-weight:400;color:var(--cream);margin-bottom:10px;
+}
+.fac-desc{font-size:12px;color:var(--muted);line-height:1.8;font-weight:300}
+
+/* ── GALLERY ── */
+.gallery-sec{
+  padding:0 80px 130px;
+}
+.gallery-grid{
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr;
+  grid-template-rows:280px 280px;
+  gap:8px;
+  margin-top:60px;
+}
+.gal-item{
+  overflow:hidden;border-radius:2px;position:relative;cursor:pointer;
+}
+.gal-item.span2{grid-row:span 2}
+.gal-inner{
+  width:100%;height:100%;
+  transition:transform .5s cubic-bezier(.25,1,.5,1);
+  display:flex;align-items:center;justify-content:center;
+  font-size:clamp(40px,5vw,72px);
+}
+.gal-item:hover .gal-inner{transform:scale(1.06)}
+.g1{background:linear-gradient(150deg,#1a1206,#0e0a04)}
+.g2{background:linear-gradient(150deg,#0a1218,#06080e)}
+.g3{background:linear-gradient(150deg,#12180a,#060e06)}
+.g4{background:linear-gradient(150deg,#18100a,#0e0806)}
+.g5{background:linear-gradient(150deg,#0a1218,#080e14)}
+.gal-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(7,7,5,.5),transparent);
+  opacity:0;transition:opacity .3s;
+}
+.gal-item:hover .gal-overlay{opacity:1}
+.gal-caption{
+  position:absolute;bottom:16px;left:16px;
+  font-family:'Cormorant Garamond',serif;
+  font-size:16px;color:var(--cream);font-style:italic;
+  opacity:0;transform:translateY(8px);transition:all .3s;
+}
+.gal-item:hover .gal-caption{opacity:1;transform:translateY(0)}
+
+/* ── EXPERIENCES ── */
+.exp-sec{
+  background:var(--deep);
+  border-top:1px solid var(--border);
+  padding:130px 80px;
+}
+.exp-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:60px;
+}
+.exp-card{
+  position:relative;overflow:hidden;
+  border:1px solid var(--border);padding:48px 36px;
+  transition:border-color .3s;
+}
+.exp-card:hover{border-color:rgba(200,164,90,.4)}
+.exp-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:64px;color:rgba(200,164,90,.08);
+  position:absolute;top:16px;right:20px;line-height:1;
+  font-weight:500;
+}
+.exp-icon{font-size:32px;display:block;margin-bottom:20px}
+.exp-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px;font-weight:400;color:var(--cream);margin-bottom:12px;
+}
+.exp-body{font-size:13px;color:var(--muted);line-height:1.8;font-weight:300}
+
+/* ── TESTIMONIALS ── */
+.testi-sec{padding:130px 80px;text-align:center}
+.testi-slider{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+  background:var(--border);margin-top:60px;
+}
+.testi-card{
+  background:var(--black);padding:52px 40px;
+  transition:background .3s;
+}
+.testi-card:hover{background:var(--card)}
+.testi-stars{letter-spacing:3px;color:var(--gold);font-size:14px;margin-bottom:24px}
+.testi-quote{
+  font-family:'Cormorant Garamond',serif;
+  font-size:18px;font-style:italic;line-height:1.7;
+  color:rgba(242,234,216,.75);margin-bottom:32px;font-weight:300;
+}
+.testi-author{display:flex;align-items:center;justify-content:center;gap:14px}
+.testi-av{
+  width:44px;height:44px;border-radius:50%;
+  background:linear-gradient(135deg,var(--gold),#8b3a1a);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--black);
+}
+.testi-name{font-size:13px;font-weight:600;color:var(--cream);text-align:left}
+.testi-from{font-size:11px;color:var(--muted);margin-top:2px}
+
+/* ── BOOKING BANNER ── */
+.booking-bar{
+  background:linear-gradient(to right,#1a1508,#0e0c06,#1a1508);
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  padding:48px 80px;
+}
+.bb-inner{
+  display:grid;grid-template-columns:repeat(4,1fr) auto;gap:0;
+  background:var(--faint);
+  border:1px solid var(--border);
+}
+.bb-field{
+  padding:20px 24px;border-right:1px solid var(--border);
+  display:flex;flex-direction:column;gap:4px;
+}
+.bb-label{
+  font-size:9px;letter-spacing:2.5px;text-transform:uppercase;
+  color:var(--gold);font-weight:500;
+}
+.bb-value{
+  font-family:'Cormorant Garamond',serif;
+  font-size:17px;color:var(--cream);font-weight:400;
+}
+.bb-btn{
+  background:var(--gold);color:var(--black);
+  border:none;padding:0 40px;
+  font-size:11px;font-weight:600;letter-spacing:2.5px;
+  text-transform:uppercase;cursor:pointer;
+  transition:background .25s;white-space:nowrap;
+}
+.bb-btn:hover{background:var(--gold2)}
+
+/* ── CTA ── */
+.cta-sec{
+  padding:160px 80px;text-align:center;
+  position:relative;overflow:hidden;
+  background:radial-gradient(ellipse at 50% 0%,rgba(200,164,90,.07) 0%,transparent 65%);
+}
+.cta-sec::before{
+  content:'"';
+  font-family:'Cormorant Garamond',serif;
+  font-size:500px;color:rgba(200,164,90,.025);
+  position:absolute;top:-80px;left:50%;transform:translateX(-50%);
+  line-height:1;pointer-events:none;
+}
+.cta-h{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(36px,5vw,68px);font-weight:300;line-height:1.1;
+  color:var(--cream);margin-bottom:24px;
+}
+.cta-h em{color:var(--gold);font-style:italic;display:block}
+.cta-sub{
+  font-size:15px;color:var(--muted);
+  max-width:480px;margin:0 auto 48px;line-height:1.8;font-weight:300;
+}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.contact-row{
+  margin-top:52px;display:flex;gap:48px;justify-content:center;
+  font-size:13px;flex-wrap:wrap;
+}
+.contact-item{display:flex;flex-direction:column;gap:4px;align-items:center}
+.ci-label{font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted)}
+.ci-val{color:var(--cream);font-family:'Cormorant Garamond',serif;font-size:17px}
+
+/* ── FOOTER ── */
+footer{
+  background:#040403;
+  border-top:1px solid var(--border);
+  padding:80px;
+  display:grid;grid-template-columns:2.2fr 1fr 1fr 1fr;gap:60px;
+}
+.fl-logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:26px;font-weight:500;letter-spacing:4px;
+  color:var(--cream);margin-bottom:16px;display:block;text-decoration:none;
+}
+.fl-logo span{color:var(--gold);font-style:italic}
+.fl-tagline{font-size:13px;color:var(--muted);line-height:1.7;font-weight:300;margin-bottom:28px}
+.fl-contact{font-size:13px;color:var(--muted);margin-bottom:8px}
+.fl-contact a{color:var(--gold);text-decoration:none}
+.fc-title{
+  font-size:9px;letter-spacing:3px;text-transform:uppercase;
+  color:rgba(242,234,216,.25);margin-bottom:22px;
+}
+.fc-ul{list-style:none}
+.fc-ul li{margin-bottom:13px}
+.fc-ul a{font-size:13px;color:var(--muted);text-decoration:none;transition:color .2s}
+.fc-ul a:hover{color:var(--gold)}
+.footer-bottom{
+  background:#040403;border-top:1px solid rgba(255,255,255,.04);
+  padding:20px 80px;
+  display:flex;justify-content:space-between;
+  font-size:11px;color:rgba(242,234,216,.2);letter-spacing:.5px;
+}
+
+/* WhatsApp */
+.wa{
+  position:fixed;bottom:32px;right:32px;z-index:700;
+  display:flex;align-items:center;gap:10px;
+  background:#25d366;color:#000;
+  padding:13px 20px;border-radius:50px;
+  text-decoration:none;font-size:13px;font-weight:600;
+  box-shadow:0 8px 28px rgba(37,211,102,.3);
+  transition:all .3s;
+}
+.wa:hover{transform:scale(1.04);box-shadow:0 8px 40px rgba(37,211,102,.5)}
+
+/* Reveals */
+.rv{opacity:0;transform:translateY(36px);transition:all .85s cubic-bezier(.16,1,.3,1)}
+.rv.in{opacity:1;transform:none}
+.rv-d1{transition-delay:.1s}.rv-d2{transition-delay:.2s}.rv-d3{transition-delay:.3s}
+
+@media(max-width:960px){
+  nav,nav.solid{padding:16px 24px}
+  .nav-mid,.nav-right .btn-outline-gold{display:none}
+  .hero-content{padding:0 24px;max-width:100%}
+  .hero-scroll,.hero-silhouette{display:none}
+  .hero-h1{font-size:48px}
+  .awards{padding:16px 24px;gap:20px}
+  .about-sec,.dining-grid{grid-template-columns:1fr;padding:70px 24px;gap:40px}
+  .rooms-sec,.facilities-sec,.gallery-sec,.exp-sec,.testi-sec,.cta-sec,.booking-bar,.dining-sec{padding:70px 24px}
+  .rooms-grid,.fac-grid,.testi-slider,.exp-grid{grid-template-columns:1fr}
+  .gallery-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto}
+  .gal-item.span2{grid-row:span 1}
+  .bb-inner{grid-template-columns:1fr 1fr}
+  .bb-btn{grid-column:span 2;padding:16px}
+  footer{grid-template-columns:1fr 1fr;padding:48px 24px;gap:32px}
+  .footer-bottom{padding:16px 24px;flex-direction:column;gap:6px;text-align:center}
+  .rb-form{grid-template-columns:1fr}
+  .rb-select,.rb-submit{grid-column:span 1}
+  .dining-sec{padding:70px 24px}
+
+/* Icon Styles */
+.section-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.room-icon {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto 15px;
+}
+
+.amenity-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+.dining-icon {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto 20px;
+}
+
+.dining-thumb-icon {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto 8px;
+}
+
+.facility-icon {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto 15px;
+}
+
+.gallery-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.experience-icon {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto 15px;
+}
+
+.rating-stars {
+  width: 80px;
+  height: 16px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto 10px;
+}
+
+.footer-icon {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+.whatsapp-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+}
+</style>
+</head>
+<body>
+
+<div id="cur"></div>
+<div id="cur2"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="logo">THE ALPS
+HOTEL NAKURU<span> Alps</span></a>
+  <ul class="nav-mid">
+    <li><a href="#rooms">Rooms & Suites</a></li>
+    <li><a href="#dining">Dining</a></li>
+    <li><a href="#facilities">Facilities</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="#dining" class="btn-nav btn-outline-gold">Reserve a Table</a>
+    <a href="#booking" class="btn-nav btn-solid-gold">Book a Room</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="stars"></div>
+  <div class="hero-silhouette"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Five-Star Luxury · Est. 2008</div>
+    <h1 class="hero-h1">
+      Where Luxury<br>Meets<br><em>Timeless Elegance</em>
+    </h1>
+    <p class="hero-sub">
+      An intimate sanctuary of refined living — where world-class hospitality, exquisite dining, and exceptional comfort converge in perfect harmony.
+    </p>
+    <div class="hero-btns">
+      <a href="#booking" class="btn-nav btn-solid-gold">Reserve Your Stay</a>
+      <a href="#rooms" class="btn-nav btn-outline-gold">Explore Rooms</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-bar"></div>
+    <span>Discover More</span>
+  </div>
+</section>
+
+<!-- AWARDS -->
+<div class="awards">
+  <div class="awards-label">Recognised By</div>
+  <div class="awards-list">
+    <div class="award-item">✦ Forbes Travel Guide — 5 Stars</div>
+    <div class="award-item">✦ Condé Nast Traveller — Top 100</div>
+    <div class="award-item">✦ Michelin Guide — Recommended</div>
+    <div class="award-item">✦ TripAdvisor — Travellers' Choice</div>
+    <div class="award-item">✦ World Luxury Hotel Awards</div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about-sec" id="about">
+  <div class="about-visual rv">
+    <div class="about-img tall">
+       <div class="img-block h240" style="height:100%;min-height:492px"><img src="images/the-alps-hotel.jpg" alt="Hotel Building" class="section-icon"></div>
+     </div>
+     <div class="about-img"><div class="img-block h240"><img src="images/concierge-bell1.jpg" alt="Concierge Bell" class="section-icon"></div></div>
+     <div class="about-img"><div class="img-block h240"><img src="images/spa-nature.jpg" alt="Spa Nature" class="section-icon"></div></div>
+    <div class="about-badge">
+      <div class="badge-num">16</div>
+      <div class="badge-txt">Years of Excellence</div>
+    </div>
+  </div>
+  <div class="rv rv-d1">
+    <div class="sec-label">Our Story</div>
+    <h2 class="sec-title">A Legacy of<br><em>Exceptional</em><br>Hospitality</h2>
+    <p class="sec-body">Nestled in a setting of breathtaking beauty, THE ALPS
+HOTEL NAKURU has been welcoming discerning guests. Every detail — from the hand-curated art to the thread count of our linens — is chosen to create an experience that lingers long after you leave.</p>
+    <p class="sec-body">Our philosophy is simple: anticipate every desire before it is spoken, and deliver it with quiet grace.</p>
+    <div class="about-features">
+      <div class="af-item"><div class="af-num">87</div><div class="af-label">Suites & Rooms</div></div>
+      <div class="af-item"><div class="af-num">3</div><div class="af-label">Dining Venues</div></div>
+      <div class="af-item"><div class="af-num">24/7</div><div class="af-label">Concierge</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ROOMS -->
+<section class="rooms-sec" id="rooms">
+  <div class="rooms-header rv">
+    <div>
+      <div class="sec-label">Accommodations</div>
+      <h2 class="sec-title">Rooms &<br><em>Suites</em></h2>
+    </div>
+    <a href="#booking" class="btn-nav btn-outline-gold">Check Availability</a>
+  </div>
+  <div class="rooms-grid">
+    <div class="room-card rv">
+      <div class="room-img">
+         <div class="room-img-inner"><img src="images/rooms/deluxe-king.jpg" alt="Deluxe King Room" class="room-icon"></div>
+         <div class="room-tag">Best Seller</div>
+       </div>
+      <div class="room-body">
+        <div class="room-name">Deluxe King Room</div>
+        <div class="room-amenities">
+          <span class="amenity"><img src="images/amenities/city-view.jpg" alt="City View" class="amenity-icon"> City View</span>
+           <span class="amenity"><img src="images/amenities/soaking-tub.jpg" alt="Soaking Tub" class="amenity-icon"> Soaking Tub</span>
+           <span class="amenity"><img src="images/amenities/wifi.jpg" alt="High-Speed WiFi" class="amenity-icon"> High-Speed WiFi</span>
+           <span class="amenity"><img src="images/amenities/nespresso.jpg" alt="Nespresso" class="amenity-icon"> Nespresso</span>
+        </div>
+        <div class="room-desc">An elegant retreat featuring bespoke furnishings, plush king bedding, and floor-to-ceiling windows that frame breathtaking city vistas.</div>
+        <div class="room-footer">
+          <div class="room-price">kes285 <small>/ night</small></div>
+          <button class="room-book">Book Now</button>
+        </div>
+      </div>
+    </div>
+    <div class="room-card rv rv-d1">
+      <div class="room-img">
+         <div class="room-img-inner"><img src="images/rooms/THE ALPS
+HOTEL NAKURU-corner.jpg" alt="THE ALPS
+HOTEL NAKURU Corner Suite" class="room-icon"></div>
+         <div class="room-tag">Premium</div>
+       </div>
+      <div class="room-body">
+        <div class="room-name">THE ALPS
+HOTEL NAKURU Corner Suite</div>
+        <div class="room-amenities">
+          <span class="amenity"><img src="images/amenities/panoramic-view.jpg" alt="Panoramic View" class="amenity-icon"> Panoramic View</span>
+           <span class="amenity"><img src="images/amenities/marble-bath.jpg" alt="Marble Bath" class="amenity-icon"> Marble Bath</span>
+           <span class="amenity"><img src="images/amenities/mini-bar.jpg" alt="Mini Bar" class="amenity-icon"> Mini Bar</span>
+           <span class="amenity"><img src="images/amenities/living-room.jpg" alt="Living Room" class="amenity-icon"> Living Room</span>
+        </div>
+        <div class="room-desc">Two-room corner suite with panoramic windows, a separate living area, a marble bathroom, and personalised butler service on request.</div>
+        <div class="room-footer">
+          <div class="room-price">kes 540 <small>/ night</small></div>
+          <button class="room-book">Book Now</button>
+        </div>
+      </div>
+    </div>
+    <div class="room-card rv rv-d2">
+      <div class="room-img">
+         <div class="room-img-inner"><img src="images/rooms/presidential-suite.jpg" alt="Presidential Suite" class="room-icon"></div>
+         <div class="room-tag" style="background:var(--black);color:var(--gold);border:1px solid var(--gold)">Signature</div>
+       </div>
+      <div class="room-body">
+        <div class="room-name">Presidential Suite</div>
+        <div class="room-amenities">
+          <span class="amenity"><img src="images/amenities/sky-views.jpg" alt="Sky Views" class="amenity-icon"> Sky Views</span>
+           <span class="amenity"><img src="images/amenities/private-spa.jpg" alt="Private Spa" class="amenity-icon"> Private Spa</span>
+           <span class="amenity"><img src="images/amenities/in-suite-dining.jpg" alt="In-Suite Dining" class="amenity-icon"> In-Suite Dining</span>
+           <span class="amenity"><img src="images/amenities/chauffeur.jpg" alt="Chauffeur" class="amenity-icon"> Chauffeur</span>
+        </div>
+        <div class="room-desc">The pinnacle of luxury. A private sky residence with a dedicated butler, in-suite dining for ten, private spa, and round-the-clock chauffeur service.</div>
+        <div class="room-footer">
+          <div class="room-price">kes1,800 <small>/ night</small></div>
+          <button class="room-book">Enquire</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING BAR -->
+<div class="booking-bar" id="booking">
+  <div class="bb-inner">
+    <div class="bb-field">
+      <div class="bb-label">Check In</div>
+      <div class="bb-value">Select Date</div>
+    </div>
+    <div class="bb-field">
+      <div class="bb-label">Check Out</div>
+      <div class="bb-value">Select Date</div>
+    </div>
+    <div class="bb-field">
+      <div class="bb-label">Guests</div>
+      <div class="bb-value">2 Adults</div>
+    </div>
+    <div class="bb-field" style="border-right:none">
+      <div class="bb-label">Room Type</div>
+      <div class="bb-value">Any Room</div>
+    </div>
+    <button class="bb-btn">Check Availability</button>
+  </div>
+</div>
+
+<!-- DINING -->
+<section class="dining-sec" id="dining">
+  <div class="sec-label">Culinary Experience</div>
+  <h2 class="sec-title" style="margin-bottom:60px">The Art of<br><em>Exceptional Dining</em></h2>
+  <div class="dining-grid">
+    <div class="rv">
+      <div class="dining-main-img">
+         <img src="images/dining/restaurant-main.jpg" alt="THE ALPS
+HOTEL NAKURU Restaurant" class="dining-icon">
+         <div class="dining-label-overlay">
+           <div class="dlo-title">THE ALPS
+HOTEL NAKURU Restaurant</div>
+           <div class="dlo-sub">Open Daily · 12pm–11pm</div>
+         </div>
+       </div>
+      <div class="dining-thumb-row">
+         <div class="dining-thumb"><img src="images/dining/champagne.jpg" alt="Champagne" class="dining-thumb-icon"></div>
+         <div class="dining-thumb"><img src="images/dining/wine-glass.jpg" alt="Wine Glass" class="dining-thumb-icon"></div>
+         <div class="dining-thumb"><img src="images/dining/coffee.jpg" alt="Coffee" class="dining-thumb-icon"></div>
+       </div>
+    </div>
+    <div class="rv rv-d1">
+      <p class="sec-body" style="margin-bottom:32px">Our signature restaurant is a theatre of flavour — where our Executive Chef transforms the finest seasonal ingredients into dishes that are as beautiful as they are unforgettable. Complemented by a wine cellar of over 800 labels.</p>
+
+      <div class="menu-preview">
+        <div class="menu-category">Signature Starters</div>
+        <div class="menu-item">
+          <div>
+            <div class="mi-name">Lobster Bisque</div>
+            <div class="mi-desc">Cognac cream, chive oil, croutons</div>
+          </div>
+          <div class="mi-dots"></div>
+          <div class="mi-price">kes 28</div>
+        </div>
+        <div class="menu-item">
+          <div>
+            <div class="mi-name">Wagyu Beef Tartare</div>
+            <div class="mi-desc">Truffle vinaigrette, quail egg, sourdough</div>
+          </div>
+          <div class="mi-dots"></div>
+          <div class="mi-price">kes36</div>
+        </div>
+        <div class="menu-category" style="margin-top:20px">Main Courses</div>
+        <div class="menu-item">
+          <div>
+            <div class="mi-name">Pan-Seared Sea Bass</div>
+            <div class="mi-desc">Saffron beurre blanc, samphire, heritage potato</div>
+          </div>
+          <div class="mi-dots"></div>
+          <div class="mi-price">kes62</div>
+        </div>
+        <div class="menu-item">
+          <div>
+            <div class="mi-name">Dry-Aged Ribeye</div>
+            <div class="mi-desc">45-day aged, roasted bone marrow, green peppercorn</div>
+          </div>
+          <div class="mi-dots"></div>
+          <div class="mi-price">kes88</div>
+        </div>
+      </div>
+
+      <div class="reserve-box">
+        <div class="rb-title">Reserve a Table</div>
+        <div class="rb-form">
+          <input class="rb-input" type="text" placeholder="Full Name">
+          <input class="rb-input" type="text" placeholder="Phone / Email">
+          <input class="rb-input" type="text" placeholder="Date">
+          <input class="rb-input" type="text" placeholder="Time">
+          <select class="rb-select">
+            <option style="background:#1a1508">Number of Guests</option>
+            <option style="background:#1a1508">1–2 Guests</option>
+            <option style="background:#1a1508">3–4 Guests</option>
+            <option style="background:#1a1508">5+ Guests / Private Dining</option>
+          </select>
+          <button class="rb-submit">Confirm Reservation</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FACILITIES -->
+<section class="facilities-sec" id="facilities">
+  <div class="sec-label rv">Amenities</div>
+  <h2 class="sec-title rv">World-Class<br><em>Facilities</em></h2>
+  <div class="fac-grid">
+    <div class="fac-card rv">
+       <span class="fac-icon"><img src="images/facilities/spa.jpg" alt="Spa & Wellness" class="facility-icon"></span>
+       <div class="fac-name">THE ALPS
+HOTEL NAKURU Spa & Wellness</div>
+       <p class="fac-desc">A sanctuary of calm. Eight private treatment rooms, steam baths, ice pools, and an extensive menu of signature rituals.</p>
+     </div>
+    <div class="fac-card rv rv-d1">
+       <span class="fac-icon"><img src="images/facilities/infinity-pool.jpg" alt="Infinity Pool" class="facility-icon"></span>
+       <div class="fac-name">Infinity Pool</div>
+       <p class="fac-desc">A breathtaking sky-level infinity pool with panoramic views, private cabanas, and poolside cocktail service.</p>
+     </div>
+    <div class="fac-card rv rv-d2">
+       <span class="fac-icon"><img src="images/facilities/fitness-centre.jpg" alt="Fitness Centre" class="facility-icon"></span>
+       <div class="fac-name">Fitness Centre</div>
+       <p class="fac-desc">State-of-the-art equipment, personal trainers, and bespoke fitness programmes available 24 hours a day.</p>
+     </div>
+    <div class="fac-card rv rv-d3">
+       <span class="fac-icon"><img src="images/facilities/events-ballroom.jpg" alt="Events & Ballroom" class="facility-icon"></span>
+       <div class="fac-name">Events & Ballroom</div>
+       <p class="fac-desc">Four versatile event spaces accommodating 20 to 500 guests — ideal for weddings, conferences, and private celebrations.</p>
+     </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery-sec" id="gallery">
+  <div class="rv">
+    <div class="sec-label">Gallery</div>
+    <h2 class="sec-title">A Visual<br><em>Journey</em></h2>
+  </div>
+  <div class="gallery-grid rv">
+    <div class="gal-item span2">
+       <div class="gal-inner g1"><img src="images/gallery/hotel-facade.jpg" alt="Hotel Facade" class="gallery-icon"></div>
+       <div class="gal-overlay"></div>
+       <div class="gal-caption">The THE ALPS
+HOTEL NAKURU Façade</div>
+     </div>
+     <div class="gal-item">
+       <div class="gal-inner g2"><img src="images/gallery/presidential-suite.jpg" alt="Presidential Suite" class="gallery-icon"></div>
+       <div class="gal-overlay"></div>
+       <div class="gal-caption">Presidential Suite</div>
+     </div>
+     <div class="gal-item">
+       <div class="gal-inner g3"><img src="images/gallery/fine-dining.jpg" alt="Fine Dining" class="gallery-icon"></div>
+       <div class="gal-overlay"></div>
+       <div class="gal-caption">Fine Dining</div>
+     </div>
+     <div class="gal-item">
+       <div class="gal-inner g4"><img src="images/gallery/infinity-pool.jpg" alt="Infinity Pool" class="gallery-icon"></div>
+       <div class="gal-overlay"></div>
+       <div class="gal-caption">Infinity Pool</div>
+     </div>
+     <div class="gal-item">
+       <div class="gal-inner g5"><img src="images/gallery/spa-treatment.jpg" alt="Spa Treatment" class="gallery-icon"></div>
+       <div class="gal-overlay"></div>
+       <div class="gal-caption">THE ALPS
+HOTEL NAKURU Spa</div>
+     </div>
+  </div>
+</section>
+
+<!-- EXPERIENCES -->
+<section class="exp-sec">
+  <div class="sec-label rv">Go Beyond</div>
+  <h2 class="sec-title rv">Curated<br><em>Experiences</em></h2>
+  <div class="exp-grid">
+    <div class="exp-card rv">
+       <div class="exp-num">01</div>
+       <span class="exp-icon"><img src="images/experiences/sunset-dinner.jpg" alt="Sunset Dinner" class="experience-icon"></span>
+       <div class="exp-title">Private Sunset Dinner</div>
+       <p class="exp-body">A bespoke dining experience on your private terrace — curated five-course menu, sommelier-selected wines, and a view that takes your breath away.</p>
+     </div>
+    <div class="exp-card rv rv-d1">
+       <div class="exp-num">02</div>
+       <span class="exp-icon"><img src="images/experiences/helicopter-tour.jpg" alt="Helicopter Tour" class="experience-icon"></span>
+       <div class="exp-title">Helicopter City Tour</div>
+       <p class="exp-body">See the city as few ever have. Our concierge arranges private helicopter tours departing from our rooftop helipad, tailored to your itinerary.</p>
+     </div>
+    <div class="exp-card rv rv-d2">
+       <div class="exp-num">03</div>
+       <span class="exp-icon"><img src="images/experiences/wine-tasting.jpg" alt="Wine Tasting" class="experience-icon"></span>
+       <div class="exp-title">Private Wine Tasting</div>
+       <p class="exp-body">Join our Head Sommelier for a guided journey through our 800-label wine cellar, paired with artisan cheeses and charcuterie.</p>
+     </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testi-sec" id="testimonials">
+  <div class="sec-label rv" style="justify-content:center">Guest Stories</div>
+  <h2 class="sec-title rv" style="text-align:center;max-width:500px;margin:0 auto 0">What Our Guests<br><em>Are Saying</em></h2>
+  <div class="testi-slider rv">
+    <div class="testi-card">
+      <div class="testi-stars"><img src="images/rating/stars-5.png" alt="5 Star Rating" class="rating-stars"></div>
+      <p class="testi-quote">"Quite simply the finest hotel experience of my life. The staff anticipate your every need before you've even voiced it. The restaurant alone is worth the trip."</p>
+      <div class="testi-author">
+        <div class="testi-av">SL</div>
+        <div>
+          <div class="testi-name">paul kimani</div>
+          <div class="testi-from">Nakuru, kenya</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars"><img src="images/rating/stars-5.png" alt="5 Star Rating" class="rating-stars"></div>
+      <p class="testi-quote">"We celebrated our anniversary here and it exceeded every expectation. The Presidential Suite is extraordinary. We'll be back every year without question."</p>
+      <div class="testi-author">
+        <div class="testi-av">JR</div>
+        <div>
+          <div class="testi-name">James & Rachel Okonkwo</div>
+          <div class="testi-from">Nakuru, kenya</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars"><img src="images/rating/stars-5.png" alt="5 Star Rating" class="rating-stars"></div>
+      <p class="testi-quote">"I travel 200 nights a year for business. THE ALPS
+HOTEL NAKURU THE ALPS
+HOTEL NAKURU is the only hotel I actively request. The service is impeccable, the food is world-class, and the spa is unmatched."</p>
+      <div class="testi-author">
+        <div class="testi-av">DM</div>
+        <div>
+          <div class="testi-name">David onyango</div>
+          <div class="testi-from">Nairobi, Kenya</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-sec" id="contact">
+  <div class="sec-label" style="justify-content:center">Begin Your Journey</div>
+  <h2 class="cta-h">
+    Your Perfect Stay<br>
+    <em>Awaits You</em>
+  </h2>
+  <p class="cta-sub">Whether you are joining us for one night or one week, our team is ready to craft an experience tailored entirely to you. Reach out and let us begin.</p>
+  <div class="cta-btns">
+    <a href="#booking" class="btn-nav btn-solid-gold" style="padding:16px 44px;font-size:12px">Reserve a Room</a>
+    <a href="#dining" class="btn-nav btn-outline-gold" style="padding:16px 44px;font-size:12px">Reserve a Table</a>
+  </div>
+  <div class="contact-row">
+    <div class="contact-item">
+      <div class="ci-label">Reservations</div>
+      <div class="ci-val">+254 700 000 000</div>
+    </div>
+    <div class="contact-item">
+      <div class="ci-label">Email</div>
+      <div class="ci-val">stay@THE ALPS
+HOTEL NAKURU.com</div>
+    </div>
+    <div class="contact-item">
+      <div class="ci-label">Concierge</div>
+      <div class="ci-val">Available 24 / 7</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <a href="#" class="fl-logo">THE ALPS
+HOTEL NAKURU<span> Alps</span></a>
+    <p class="fl-tagline">A world of refined luxury, exceptional dining, and unforgettable moments. Where every guest is a cherished guest.</p>
+    <p class="fl-contact"><img src="images/icons/phone-call.png" alt="Phone" class="footer-icon"> <a href="#">+254 700 000 000</a></p>
+     <p class="fl-contact"><img src="images/icons/email.png" alt="Email" class="footer-icon"> <a href="#">stay@THE ALPS
+HOTEL NAKURU.com</a></p>
+     <p class="fl-contact"><img src="images/icons/location-pin.png" alt="Location" class="footer-icon">  Nakuru, kenyatta avenue</p>
+  </div>
+  <div>
+    <div class="fc-title">Hotel</div>
+    <ul class="fc-ul">
+      <li><a href="#">Rooms & Suites</a></li>
+      <li><a href="#">Special Offers</a></li>
+      <li><a href="#">Facilities</a></li>
+      <li><a href="#">Weddings & Events</a></li>
+      <li><a href="#">Check Availability</a></li>
+    </ul>
+  </div>
+  <div>
+    <div class="fc-title">Dining</div>
+    <ul class="fc-ul">
+      <li><a href="#">THE ALPS
+HOTEL NAKURU Restaurant</a></li>
+      <li><a href="#">The Lounge Bar</a></li>
+      <li><a href="#">Rooftop Terrace</a></li>
+      <li><a href="#">Reserve a Table</a></li>
+      <li><a href="#">Private Dining</a></li>
+    </ul>
+  </div>
+  <div>
+    <div class="fc-title">Guest Services</div>
+    <ul class="fc-ul">
+      <li><a href="#">Spa & Wellness</a></li>
+      <li><a href="#">Concierge</a></li>
+      <li><a href="#">Airport Transfer</a></li>
+      <li><a href="#">Loyalty Programme</a></li>
+      <li><a href="#">Contact Us</a></li>
+    </ul>
+  </div>
+</footer>
+<div class="footer-bottom">
+  <span>© 2025 THE ALPS
+HOTEL NAKURU Hotel & Restaurant. All rights reserved.</span>
+  <span>Crafted with care · Privacy Policy · Terms</span>
+</div>
+
+<a href="https://wa.me/1234567890" class="wa" target="_blank"><img src="images/icons/whatsapp.png" alt="WhatsApp" class="whatsapp-icon"> WhatsApp Concierge</a>
+
+<script>
+// Cursor
+const c=document.getElementById('cur'),r=document.getElementById('cur2');
+document.addEventListener('mousemove',e=>{
+  c.style.left=e.clientX+'px';c.style.top=e.clientY+'px';
+  setTimeout(()=>{r.style.left=e.clientX+'px';r.style.top=e.clientY+'px'},55);
+});
+document.querySelectorAll('a,button').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{c.style.width='14px';c.style.height='14px';r.style.width='44px';r.style.height='44px'});
+  el.addEventListener('mouseleave',()=>{c.style.width='7px';c.style.height='7px';r.style.width='30px';r.style.height='30px'});
+});
+// Nav
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('solid',scrollY>60));
+// Reveal
+const obs=new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting&&e.target.classList.add('in')),{threshold:.08});
+document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
